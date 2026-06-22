@@ -238,9 +238,6 @@ class Pipeline:
         batch_size = self.cfg.get("batch", {}).get("size", 4)
         cq = self.cfg.get("encode", {}).get("cq", 20)
         preset = self.cfg.get("encode", {}).get("preset", "p7")
-        lang_cfg = self.cfg.get("languages", {})
-        audio_langs = lang_cfg.get("audio", ["fin", "eng"])
-        sub_langs = lang_cfg.get("subtitles", ["fin", "eng"])
 
         print()
         print(f"  Input:        {input_path}")
@@ -408,17 +405,13 @@ class Pipeline:
             "-i", str(temp_video),
             "-i", str(input_path),
             "-map", "0:v:0",
-        ]
-        for lang in audio_langs:
-            mux_cmd.extend(["-map", f"1:a:m:language:{lang}?"])
-        for lang in sub_langs:
-            mux_cmd.extend(["-map", f"1:s:m:language:{lang}?"])
-        mux_cmd.extend([
+            "-map", "1:a?",
+            "-map", "1:s?",
             "-map_chapters", "1",
             "-map_metadata", "1",
             "-c", "copy",
             str(output_path),
-        ])
+        ]
         r = subprocess.run(mux_cmd, capture_output=True, text=True)
         if r.returncode != 0:
             print("  WARNING: chapters/metadata failed, retrying without ...")
@@ -427,15 +420,11 @@ class Pipeline:
                 "-i", str(temp_video),
                 "-i", str(input_path),
                 "-map", "0:v:0",
-            ]
-            for lang in audio_langs:
-                mux_cmd2.extend(["-map", f"1:a:m:language:{lang}?"])
-            for lang in sub_langs:
-                mux_cmd2.extend(["-map", f"1:s:m:language:{lang}?"])
-            mux_cmd2.extend([
+                "-map", "1:a?",
+                "-map", "1:s?",
                 "-c", "copy",
                 str(output_path),
-            ])
+            ]
             subprocess.run(mux_cmd2, check=True, stderr=subprocess.DEVNULL)
 
         temp_video.unlink()

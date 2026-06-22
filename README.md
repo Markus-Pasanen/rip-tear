@@ -112,15 +112,13 @@ Direct encode uses the same encode settings (`cq`, `preset`) as the RTX pipeline
 
 ### Language Filtering
 
-Both configs include a `languages` section controlling which audio and subtitle tracks are kept during muxing:
+Both configs include a `languages` section documenting which audio and subtitle tracks you intend to keep. The mux step maps all tracks from the source — DVDs and Blu-rays typically contain only 1-3 languages, so no filtering is needed at encode time. Jellyfin handles language-based track selection on playback.
 
 ```yaml
 languages:
-  audio: [fin, eng]        # Audio tracks to keep (ISO 639-2)
-  subtitles: [fin, eng]    # Subtitle tracks to keep (ISO 639-2)
+  audio: [fin, eng]        # Audio tracks you intend to keep (ISO 639-2)
+  subtitles: [fin, eng]    # Subtitle tracks you intend to keep (ISO 639-2)
 ```
-
-In the RTX pipeline this is read at runtime by the Python script. In the direct encode pipeline the values are mirrored as batch variables at the top of `direct_encode.bat`. Edit the list to match your region's languages (e.g. `[deu, eng]` for German, `[jpn, eng]` for Japanese).
 
 ### Color Grading Algorithm
 
