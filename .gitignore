@@ -8,6 +8,21 @@ test_clips/
 __pycache__/
 *.pyc
 *.pyo
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
 
 # Images
 *.png
