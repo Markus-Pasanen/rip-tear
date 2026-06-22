@@ -17,6 +17,7 @@ set "SUB_LANGS=fin eng"
 if not "%~1"=="" (
     set "INPUT_MKV=%~1"
     set "DROPMODE=1"
+    set "SKIP_CLEANUP=1"
     set "DEFAULT_NAME=%~n1"
     cls
     echo.
@@ -62,7 +63,6 @@ if exist "%RAW%\*.mkv" (
 
 :: --- RIP ------------------------------------------------------------
 
-set "DID_RIP=1"
 echo.
 echo  +------------------------------------------------------------------+
 echo  ^|  RIPPING THE DISC FROM THE DEMON'S GRASP                         ^|
@@ -209,7 +209,7 @@ if not exist "%OUTPUT%" (
 
 :: --- CLEANUP --------------------------------------------------------
 
-if defined DID_RIP (
+if not defined SKIP_CLEANUP (
     echo.
     echo  +------------------------------------------------------------------+
     echo  ^|  CLEANING UP RAW FILES                                           ^|
