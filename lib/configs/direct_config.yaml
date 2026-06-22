@@ -1,0 +1,11 @@
+# Direct Encode Pipeline
+# No AI processing -- just deinterlace, NVENC encode, and remux.
+# These settings mirror the encode section of RTX_config.yaml.
+
+encode:
+  cq: 20                     # NVENC quality (lower = better, 1-51)
+  preset: "p7"               # NVENC preset (p1 fastest, p7 best quality)
+
+languages:
+  audio: [fin, eng]           # Audio tracks to keep (ISO 639-2)
+  subtitles: [fin, eng]       # Subtitle tracks to keep (ISO 639-2)

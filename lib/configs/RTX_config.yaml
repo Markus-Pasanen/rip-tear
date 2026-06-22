@@ -1,0 +1,29 @@
+# RTX Video Pipeline
+#   python RTX_encode.py -i input.mkv -o output.mkv
+
+output:
+  target_height: 1080
+
+upscale_quality: "ULTRA"     # ULTRA | HIGH | MEDIUM | LOW | BICUBIC
+deblur_quality: "ULTRA"      # ULTRA | HIGH | MEDIUM | LOW | none
+blur_sigma: 2.0              # 0 = off
+
+color:
+  enabled: true
+  shadow_lift: 0.04          # Gentle lift to open crushed DVD blacks
+  contrast: 1.10             # Mild pivoted contrast increase (anchored at 0.18)
+  saturation: 1.20           # Moderate saturation boost via Rec.601 luma weights
+
+encode:
+  cq: 20
+  preset: "p7"
+
+batch:
+  size: 4                 # Frames processed per GPU pass. Lower if you hit OOM:
+                           #   RTX 5080 / 4090 (16-24 GB) -> 4-8
+                           #   RTX 3080 / 4070 (10-12 GB)  -> 2-4
+                           #   RTX 3060 / 4060 (8-12 GB)   -> 1-2
+
+languages:
+  audio: [fin, eng]        # Audio tracks to keep (ISO 639-2)
+  subtitles: [fin, eng]    # Subtitle tracks to keep (ISO 639-2)
