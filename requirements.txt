@@ -1,0 +1,6 @@
+torch
+numpy
+pillow
+av
+nvidia-vfx
+pyyaml

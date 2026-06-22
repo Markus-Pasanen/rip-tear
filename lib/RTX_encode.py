@@ -6,8 +6,6 @@ Usage:
     python RTX_encode.py -i raw/movie.mkv -o out/movie.mkv
     python RTX_encode.py -c config.yaml -i raw/movie.mkv -o out/movie.mkv
 
-One-time setup:
-    pip install torch numpy pillow av nvidia-vfx pyyaml
 """
 
 import argparse

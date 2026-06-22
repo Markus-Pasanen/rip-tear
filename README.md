@@ -16,7 +16,7 @@ DVD/Blu-ray restoration pipeline -- rip, upscale, deblur, encode, and remux into
 ### Python Packages
 
 ```
-pip install torch numpy pillow av nvidia-vfx pyyaml
+pip install -r requirements.txt
 ```
 
 ### Hardware
