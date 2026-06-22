@@ -144,13 +144,13 @@ set "TEMP_VIDEO=%TEMP%\video_encoded.mkv"
 echo  Encoding video stream ...
 ffmpeg -y -nostdin -i "%INPUT_MKV%" ^
     -vf "bwdif=mode=send_frame:parity=auto:deint=all,cas=0.5" ^
-    -c:v hevc_nvenc ^
+    -c:v h264_nvenc ^
     -preset p7 ^
     -cq 20 ^
     -rc-lookahead 32 ^
     -bf 2 ^
     -spatial-aq 1 -temporal-aq 1 ^
-    -pix_fmt p010le ^
+    -pix_fmt yuv420p ^
     -colorspace bt709 ^
     -color_primaries bt709 ^
     -color_trc bt709 ^
