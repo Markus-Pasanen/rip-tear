@@ -150,7 +150,7 @@ All operations clamp to [0, 1] after each step.
 
 All encoded files go to `encoded/<Movie Name>/<Movie Name>.mkv` with:
 
-- Video: h.264 8-bit (yuv420p), NVENC p7, CQ 20, 1080p
+- Video: HEVC 10-bit (p010le), NVENC p7, CQ 20, 1080p
 - Audio: copied from source (original quality)
 - Subtitles: copied from source
 - Chapters: copied from source
