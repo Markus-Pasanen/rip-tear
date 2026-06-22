@@ -147,9 +147,8 @@ ffmpeg -y -nostdin -i "%INPUT_MKV%" ^
     -c:v h264_nvenc ^
     -preset p7 ^
     -cq 20 ^
-    -tune hq ^
     -rc-lookahead 32 ^
-    -b_ref_mode middle -bf 3 ^
+    -bf 2 ^
     -spatial-aq 1 -temporal-aq 1 ^
     -pix_fmt yuv420p ^
     -colorspace bt709 ^
